@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { parseISO } from 'date-fns';
 
-import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
 import CreateAppointmentService from '@modules/appointments/services/CreateAppointmentService';
 
 // Middleware
@@ -19,7 +18,6 @@ appointmentsRouter.use(ensureUserAuthenticated);
 appointmentsRouter.post('/', async (request, response) => {
   const { provider_id, date } = request.body;
   const parsedDate = parseISO(date);
-  const appointmentsRepository = new AppointmentsRepository();
 
   const createAppointment = new CreateAppointmentService(
     appointmentsRepository,
