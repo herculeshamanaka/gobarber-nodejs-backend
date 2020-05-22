@@ -11,10 +11,11 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 
 const usersRouter = Router();
 const uploadAvatar = multer(uploadConfig);
-const usersRepository = new UsersRepository();
 
 usersRouter.post('/', async (request, response) => {
   const { name, email, password } = request.body;
+
+  const usersRepository = new UsersRepository();
 
   const createUser = new CreateUserService(usersRepository);
 
@@ -34,6 +35,8 @@ usersRouter.patch(
   ensureUserAuthenticated,
   uploadAvatar.single('avatar'),
   async (request, response) => {
+    const usersRepository = new UsersRepository();
+
     const UpdateUserAvatar = new UpdateUserAvatarService(usersRepository);
 
     const user = await UpdateUserAvatar.execute({
