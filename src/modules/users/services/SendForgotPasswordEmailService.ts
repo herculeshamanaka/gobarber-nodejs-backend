@@ -4,6 +4,7 @@ import { injectable, inject } from 'tsyringe';
 // import User from '@modules/users/infra/typeorm/entities/User';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import AppError from '@shared/errors/AppError';
 
@@ -19,6 +20,9 @@ class SendForgotPasswordEmailService {
 
     @inject('MailProvider')
     private mailProvider: IMailProvider,
+
+    @inject('UserTokensRepository')
+    private userTokensRepository: IUserTokensRepository,
   ) {}
 
   public async execute({ email }: IRequestDTO): Promise<void> {
@@ -27,6 +31,8 @@ class SendForgotPasswordEmailService {
     if (!userExists) {
       throw new AppError('User does not exists.');
     }
+
+    await this.userTokensRepository.generate(userExists.id);
 
     this.mailProvider.sendMail(email, 'Password request test');
   }
