@@ -14,7 +14,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/files', express.static(uploadAvatarConfig.avatarDir));
+app.use('/files', express.static(uploadAvatarConfig.uploadsFolder));
 app.use(routes);
 
 // Very fucking important!!! Global error handling
