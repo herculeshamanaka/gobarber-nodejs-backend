@@ -1,6 +1,6 @@
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 
-import FakeHasProvider from '@modules/users/providers/HashProvider/fakes/FakeHasProvider';
+import FakeHasProvider from '@modules/users/providers/HashProvider/fakes/FakeHashProvider';
 
 import AppError from '@shared/errors/AppError';
 import CreateUserService from './CreateUserService';
