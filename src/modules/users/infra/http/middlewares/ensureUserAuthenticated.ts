@@ -4,7 +4,7 @@ import sessionConfig from '@config/session';
 
 import AppError from '@shared/errors/AppError';
 
-interface TokenPayload {
+interface ITokenPayload {
   iat: number;
   exp: number;
   sub: string;
@@ -26,7 +26,7 @@ export default function ensureUserAuthenticated(
   try {
     const decodedToken = verify(token, sessionConfig.jwt.secret);
 
-    const { sub } = decodedToken as TokenPayload;
+    const { sub } = decodedToken as ITokenPayload;
 
     // Special type declaration, type overwrite
     request.user = {
