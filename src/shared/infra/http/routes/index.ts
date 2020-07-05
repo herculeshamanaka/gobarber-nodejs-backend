@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import appointmentsRouter from '@modules/appointments/infra/http/routes/appointments.routes';
+import providersRouter from '@modules/appointments/infra/http/routes/providers.routes';
 import usersRouter from '@modules/users/infra/http/routes/users.routes';
 import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
 import passwordRouter from '@modules/users/infra/http/routes/password.routes';
@@ -14,5 +15,6 @@ router.use('/users', usersRouter);
 router.use('/sessions', sessionsRouter);
 router.use('/password', passwordRouter);
 router.use('/profile', profileRouter);
+router.use('/providers', providersRouter);
 
 export default router;
