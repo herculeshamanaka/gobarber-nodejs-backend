@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import { errors } from 'celebrate';
 import 'express-async-errors';
 
 import uploadAvatarConfig from '@config/upload';
@@ -16,6 +17,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadAvatarConfig.uploadsFolder));
 app.use(routes);
+
+app.use(errors()); // Happi/Joi error messages
 
 // Very fucking important!!! Global error handling
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
