@@ -1,7 +1,10 @@
+.idea/
+.vscode
 node_modules/
-coverageReport/
 build/
 temp/
+.env
+coverageReport/
 
 tmp/*
 !tmp/.gitkeep
